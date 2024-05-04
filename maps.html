@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persebaran UMKM</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+      #map {
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      // Inisialisasi peta dengan koordinat tengah dan zoom level
+      var map = L.map("map").setView([-7.7956, 110.3695], 13);
+
+      // Tambahkan peta OpenStreetMap
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      // Koordinat lokasi UMKM (contoh)
+      var umkmLocations = [
+        { name: "UMKM 1", location: [-7.7956, 110.3695] }, // Contoh lokasi 1
+        { name: "UMKM 2", location: [-7.7972, 110.3715] }, // Contoh lokasi 2
+      ];
+
+      // Tambahkan marker untuk setiap lokasi UMKM
+      umkmLocations.forEach(function (umkm) {
+        L.marker(umkm.location)
+          .addTo(map)
+          .bindPopup(`<b>${umkm.name}</b><br>Lokasi UMKM`);
+      });
+    </script>
+  </body>
+</html>

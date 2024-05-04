@@ -1,0 +1,69 @@
+/* Tambahkan kode CSS berikut */
+.fixed-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999; /* Make sure it's above other elements */
+}
+/* Gaya scrollbar untuk browser WebKit */
+::-webkit-scrollbar {
+  width: 5px; 
+  height: 3px;/* Lebar scrollbar */
+}
+
+/* Gaya track (jalur) scrollbar */
+::-webkit-scrollbar-track {
+  background: transparent; /* Warna jalur scrollbar */
+}
+
+/* Gaya thumb (pemegang) scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Warna thumb scrollbar */
+  border-radius: 10px; /* Sudut radius thumb */
+}
+
+/* Gaya thumb ketika dihover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Warna thumb saat dihover */
+}
+
+
+/* menu navbar*/
+.menu-item {
+  position: relative;
+}
+
+.menu-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover::after {
+  background-color: white;
+}
+
+/*animasi tulisan konten pertama*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-bottom {
+  animation: slideInFromBottom 3s ease-out;
+}
