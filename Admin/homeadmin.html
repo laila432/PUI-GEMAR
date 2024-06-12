@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar with Sidebar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="fixed inset-y-0 left-0 z-30 w-64 bg-indigo-900 shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out"
+      >
+        <div class="flex items-center justify-center px-4 py-4">
+          <img
+            src="../img/logo.png"
+            alt="Logo"
+            class="h-16 w-auto object-contain mt-4"
+          />
+        </div>
+        <nav class="mt-5 ml-2">
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+            >Dashboard</a
+          >
+          <div class="relative">
+            <a
+              href="#"
+              id="profilSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Profil <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="profilSubMenu" class="ml-4 hidden">
+              <a
+                href="profiladmin/sejarahadmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Sejarah</a
+              >
+              <a
+                href="profiladmin/visimisiadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Visi Misi</a
+              >
+              <a
+                href="profiladmin/strukturoradmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Struktur Organisasi</a
+              >
+              <a
+                href="profiladmin/timadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Tim</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="sumberdayaSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Sumber Daya <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="sumberdayaSubMenu" class="ml-4 hidden">
+              <a
+                href="sdadmin/kegiatan.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Artikel</a
+              >
+              <a
+                href="sdadmin/persebaranumkm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Kegiatan</a
+              >
+              <a
+                href="editkontak.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Persebaran UMKM</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="kontakSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Kontak <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="kontakSubMenu" class="ml-4 hidden">
+              <a
+                href="#"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Edit Kontak</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Main content -->
+      <div
+        id="main-content"
+        class="flex-1 flex flex-col overflow-hidden transition-transform duration-300 ease-in-out"
+      >
+        <!-- Header -->
+        <nav class="bg-indigo-900 border-b border-gray-200">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <button
+                  id="menu-button"
+                  class="text-white hover:text-gray-400 focus:outline-none"
+                  aria-label="Toggle Sidebar"
+                >
+                  <i class="fas fa-bars fa-lg"></i>
+                  <span class="sr-only">Toggle Sidebar</span>
+                </button>
+              </div>
+              <div class="flex items-center ml-3">
+                <div class="relative">
+                  <!-- Profile Button -->
+                  <button
+                    id="profile-menu-button"
+                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-transparent hover:text-gray-400"
+                  >
+                    <i
+                      class="fas fa-user-circle fa-lg text-white hover:text-gray-400"
+                    ></i>
+                  </button>
+                  <!-- Profile Menu -->
+                  <div
+                    id="profile-menu"
+                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-700 ring-1 ring-black ring-opacity-5 hidden"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="profile-menu-button"
+                  >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Edit</a
+                    >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Content -->
+        <!-- Content -->
+        <main class="flex-1 bg-gray-100 p-6 overflow-auto">
+          <div class="max-w-3xl mx-auto text-center">
+            <img
+              src="../img/logo.png"
+              alt="Logo"
+              class="h-24 w-auto object-contain mx-auto mb-4"
+            />
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">
+              Selamat datang, Admin PUI GEMAR
+            </h1>
+            <p class="text-lg text-gray-600 mb-4 leading-relaxed">
+              Berikut beberapa hal yang bisa Admin lakukan untuk website PUI
+              GEMAR:
+            </p>
+            <ul class="text-lg text-gray-600 list-disc list-inside mx-auto">
+              <li>
+                Kelola konten profil PUI GEMAR (Sejarah, Visi Misi, Struktur
+                Organisasi, dan Tim )
+              </li>
+              <li>
+                Kelola konten Sumber Daya PUI GEMAR (Artikel, Kegiatan,
+                Persebaran UMKM)
+              </li>
+              <li>Kelola Konten Kontak</li>
+              <li>Kelola Akun Admin</li>
+            </ul>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      // Toggle sidebar
+      document
+        .getElementById("menu-button")
+        .addEventListener("click", function () {
+          var sidebar = document.getElementById("sidebar");
+          var mainContent = document.getElementById("main-content");
+
+          sidebar.classList.toggle("-translate-x-full");
+
+          // Tambahkan atau hilangkan margin pada main content sesuai dengan keadaan sidebar
+          if (sidebar.classList.contains("-translate-x-full")) {
+            mainContent.classList.remove("ml-64");
+          } else {
+            mainContent.classList.add("ml-64");
+          }
+        });
+
+      // Toggle submenu profil
+      document.getElementById("profilSubMenuToggle").onclick = function () {
+        var submenu = document.getElementById("profilSubMenu");
+        var otherSubmenus = document.querySelectorAll(
+          "[id$='SubMenu']:not(#profilSubMenu)"
+        );
+
+        // Sembunyikan submenu lainnya
+        otherSubmenus.forEach(function (item) {
+          item.classList.add("hidden");
+        });
+
+        submenu.classList.toggle("hidden");
+      };
+
+      // Toggle submenu sumberdaya
+      document.getElementById("sumberdayaSubMenuToggle").onclick = function () {
+        var submenu = document.getElementById("sumberdayaSubMenu");
+        var otherSubmenus = document.querySelectorAll(
+          "[id$='SubMenu']:not(#sumberdayaSubMenu)"
+        );
+
+        // Sembunyikan submenu lainnya
+        otherSubmenus.forEach(function (item) {
+          item.classList.add("hidden");
+        });
+
+        submenu.classList.toggle("hidden");
+      };
+
+      // Toggle submenu kontak
+      document.getElementById("kontakSubMenuToggle").onclick = function () {
+        var submenu = document.getElementById("kontakSubMenu");
+        var otherSubmenus = document.querySelectorAll(
+          "[id$='SubMenu']:not(#kontakSubMenu)"
+        );
+
+        // Sembunyikan submenu lainnya
+        otherSubmenus.forEach(function (item) {
+          item.classList.add("hidden");
+        });
+
+        submenu.classList.toggle("hidden");
+      };
+
+      // Toggle profile menu
+      document.getElementById("profile-menu-button").onclick = function (
+        event
+      ) {
+        var menu = document.getElementById("profile-menu");
+        var otherSubmenus = document.querySelectorAll(
+          "[id$='SubMenu']:not(#profile-menu)"
+        );
+
+        // Sembunyikan submenu lainnya
+        otherSubmenus.forEach(function (item) {
+          item.classList.add("hidden");
+        });
+
+        menu.classList.toggle("hidden");
+        event.stopPropagation(); // Mencegah event berbubungan dengan event klik window
+      };
+
+      // Tutup menu profil jika di-klik di luar area menu
+      window.onclick = function (event) {
+        var menu = document.getElementById("profile-menu");
+        if (
+          !event.target.closest("#profile-menu") &&
+          !event.target.closest("#profile-menu-button")
+        ) {
+          if (!menu.classList.contains("hidden")) {
+            menu.classList.add("hidden");
+          }
+        }
+      };
+    </script>
+  </body>
+</html>

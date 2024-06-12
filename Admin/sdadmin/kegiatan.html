@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar with Sidebar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="fixed inset-y-0 left-0 z-30 w-64 bg-indigo-900 shadow-lg transform -translate-x-full transition-transform duration-100 ease-in-out"
+      >
+        <div class="flex items-center justify-center px-4 py-4">
+          <img
+            src="../../img/logo.png"
+            alt="Logo"
+            class="h-16 w-auto object-contain mt-4"
+          />
+        </div>
+        <nav class="mt-5 ml-2">
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+            >Dashboard</a
+          >
+          <div class="relative">
+            <a
+              href="#"
+              id="profilSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Profil <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="profilSubMenu" class="ml-4 hidden">
+              <a
+                href="../profiladmin/sejarahadmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Sejarah</a
+              >
+              <a
+                href="../profiladmin/visimisiadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Visi Misi</a
+              >
+              <a
+                href="../profiladmin/strukturoradmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Struktur Organisasi</a
+              >
+              <a
+                href="../profiladmin/timadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Tim</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="sumberdayaSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Sumber Daya <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="sumberdayaSubMenu" class="ml-4 hidden">
+              <a
+                href="artikeladm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Artikel</a
+              >
+              <a
+                href="kegiatan.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Kegiatan</a
+              >
+              <a
+                href="persebaranumkm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Persebaran UMKM</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="kontakSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Kontak <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="kontakSubMenu" class="ml-4 hidden">
+              <a
+                href="../editkontak.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Edit Kontak</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Main content -->
+      <div
+        id="main-content"
+        class="flex-1 flex flex-col overflow-y-auto transition-transform duration-100 ease-in-out"
+      >
+        <!-- Header -->
+        <nav class="bg-indigo-900 border-b border-gray-200">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <button
+                  id="menu-button"
+                  class="text-white hover:text-gray-400 focus:outline-none"
+                  aria-label="Toggle Sidebar"
+                >
+                  <i class="fas fa-bars fa-lg"></i>
+                  <span class="sr-only">Toggle Sidebar</span>
+                </button>
+              </div>
+              <div class="flex items-center ml-3">
+                <div class="relative">
+                  <!-- Profile Button -->
+                  <button
+                    id="profile-menu-button"
+                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-transparent hover:text-gray-400"
+                  >
+                    <i
+                      class="fas fa-user-circle fa-lg text-white hover:text-gray-400"
+                    ></i>
+                  </button>
+                  <!-- Profile Menu -->
+                  <div
+                    id="profile-menu"
+                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-700 ring-1 ring-black ring-opacity-5 hidden"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="profile-menu-button"
+                  >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Edit</a
+                    >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- Content -->
+        <main class="flex-1 bg-gray-100 p-4 sm:p-6">
+          <div
+            id="content"
+            class="transition-transform duration-500 ease-in-out"
+          >
+            <h1 class="text-4xl font-bold text-indigo-900 mt-10 mb-4">
+              Kegiatan
+            </h1>
+
+            <!-- Kegiatan 1 -->
+            <a href="detail_kegiatan_1.html">
+              <div
+                class="mx-10 mb-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+              >
+                <h2 class="text-lg font-semibold text-indigo-900 mb-2 mt-14">
+                  Nama Kegiatan 1
+                </h2>
+                <p class="text-sm text-gray-500 mb-2">01 Januari 2024</p>
+                <img
+                  src="../../img/dok1.jpg"
+                  alt="Gambar Kegiatan 1"
+                  class="mb-2 rounded-lg h-96 w-full object-cover"
+                />
+                <p class="text-gray-800 leading-relaxed">
+                  Deskripsi singkat tentang kegiatan ini.
+                </p>
+                <div class="flex justify-center mt-4">
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </a>
+
+            <!-- Kegiatan 2 -->
+            <a href="detail_kegiatan_2.html">
+              <div
+                class="mx-10 mb-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+              >
+                <h2 class="text-lg font-semibold text-indigo-900 mb-2">
+                  Nama Kegiatan 2
+                </h2>
+                <p class="text-sm text-gray-500 mb-2">02 Februari 2024</p>
+                <img src="../../img/dok2.jpg" alt="Gambar Kegiatan 2"
+                class="mb-2 rounded-lg h-96 w-full object-cover ml-10 />
+                <p class="text-gray-800 leading-relaxed">
+                  Deskripsi singkat tentang kegiatan ini.
+                </p>
+                <!-- Edit and Delete Buttons -->
+                <div class="flex justify-center mt-4">
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </a>
+
+            <!-- Kegiatan 3 -->
+            <a href="detail_kegiatan_3.html">
+              <div
+                class="mx-10 mb-8 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+              >
+                <h2 class="text-lg font-semibold text-indigo-900 mb-2">
+                  Nama Kegiatan 3
+                </h2>
+                <p class="text-sm text-gray-500 mb-2">03 Maret 2024</p>
+                <img
+                  src="../../img/dok3.jpg"
+                  alt="Gambar Kegiatan 3"
+                  class="mb-2 rounded-lg h-96 w-full object-cover ml-10"
+                />
+                <p class="text-gray-800 leading-relaxed">
+                  Deskripsi singkat tentang kegiatan ini.
+                </p>
+                <div class="flex justify-center mt-4">
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="mx-2 text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </a>
+            <!-- Floating Action Button -->
+            <button
+              class="fixed bottom-4 right-4 bg-yellow-500 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50"
+              aria-label="Tambah Tim"
+            >
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="../jsadmin.js"></script>
+  </body>
+</html>

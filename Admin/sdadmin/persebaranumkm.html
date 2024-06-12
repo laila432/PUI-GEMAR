@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar with Sidebar</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="flex h-screen overflow-hidden">
+      <!-- Sidebar -->
+      <div
+        id="sidebar"
+        class="fixed inset-y-0 left-0 z-30 w-64 bg-indigo-900 shadow-lg transform -translate-x-full transition-transform duration-100 ease-in-out"
+      >
+        <div class="flex items-center justify-center px-4 py-4">
+          <img
+            src="../../img/logo.png"
+            alt="Logo"
+            class="h-16 w-auto object-contain mt-4"
+          />
+        </div>
+        <nav class="mt-5 ml-2">
+          <a
+            href="#"
+            class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+            >Dashboard</a
+          >
+          <div class="relative">
+            <a
+              href="#"
+              id="profilSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Profil <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="profilSubMenu" class="ml-4 hidden">
+              <a
+                href="../profiladmin/sejarahadmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Sejarah</a
+              >
+              <a
+                href="../profiladmin/visimisiadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Visi Misi</a
+              >
+              <a
+                href="../profiladmin/strukturoradmin.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Struktur Organisasi</a
+              >
+              <a
+                href="../profiladmin/timadm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Tim</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="sumberdayaSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Sumber Daya <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="sumberdayaSubMenu" class="ml-4 hidden">
+              <a
+                href="artikeladm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Artikel</a
+              >
+              <a
+                href="kegiatan.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Kegiatan</a
+              >
+              <a
+                href="persebaranumkm.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Persebaran UMKM</a
+              >
+            </div>
+          </div>
+          <div class="relative">
+            <a
+              href="#"
+              id="kontakSubMenuToggle"
+              class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
+            >
+              Kontak <i class="fas fa-caret-down ml-2"></i>
+            </a>
+            <div id="kontakSubMenu" class="ml-4 hidden">
+              <a
+                href="../editkontak.html"
+                class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
+                >Edit Kontak</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!-- Main content -->
+      <div
+        id="main-content"
+        class="flex-1 flex flex-col overflow-y-auto transition-transform duration-100 ease-in-out"
+      >
+        <!-- Header -->
+        <nav class="bg-indigo-900 border-b border-gray-200">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              <div class="flex items-center">
+                <button
+                  id="menu-button"
+                  class="text-white hover:text-gray-400 focus:outline-none"
+                  aria-label="Toggle Sidebar"
+                >
+                  <i class="fas fa-bars fa-lg"></i>
+                  <span class="sr-only">Toggle Sidebar</span>
+                </button>
+              </div>
+              <div class="flex items-center ml-3">
+                <div class="relative">
+                  <!-- Profile Button -->
+                  <button
+                    id="profile-menu-button"
+                    class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-transparent hover:text-gray-400"
+                  >
+                    <i
+                      class="fas fa-user-circle fa-lg text-white hover:text-gray-400"
+                    ></i>
+                  </button>
+                  <!-- Profile Menu -->
+                  <div
+                    id="profile-menu"
+                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-700 ring-1 ring-black ring-opacity-5 hidden"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="profile-menu-button"
+                  >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Edit</a
+                    >
+                    <a
+                      href="#"
+                      class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+                      role="menuitem"
+                      >Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- Content -->
+        <main class="flex-1 bg-gray-100 p-4 sm:p-6">
+          <div
+            id="content"
+            class="transition-transform duration-500 ease-in-out"
+          >
+            <h3
+              class="text-3xl font-bold text-center font-poppins text-indigo-900 mt-14 mb-8 p-4"
+            >
+              Peta Persebaran Sumber Daya
+            </h3>
+            <div class="bg-gray-100 p-2">
+              <div id="map" class="h-96 p-2"></div>
+              <div class="flex">
+                <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                  <i class="fas fa-plus"></i>Tambah Marker
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="bg-gray-200 p-4 mt-10">
+            <div
+              class="flex items-center justify-between mb-4 cursor-pointer"
+              onclick="toggleDropdown('list1')"
+            >
+              <h2 class="text-lg font-semibold">Potensi Alam</h2>
+              <i class="fas fa-chevron-down text-gray-600"></i>
+            </div>
+            <ul class="ml-4" id="list1" style="display: none">
+              <li>
+                <a href="#" class="text-blue-500 hover:text-blue-700"
+                  >potensi alama 1</a
+                >
+                <div class="flex">
+                  <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="#" class="text-red-500 mx-1 hover:text-red-700">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="text-blue-500 hover:text-blue-700"
+                  >potensi alam 2</a
+                >
+                <div class="flex">
+                  <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a href="#" class="text-red-500 mx-1 hover:text-red-700">
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a href="#" class="text-blue-500 hover:text-blue-700"
+                  >potensi alam 3</a
+                >
+                <div class="flex">
+                  <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-red-500 mx-1 hover:text-red-700 justify-center"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li class="flex justify-end">
+                <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div
+              class="flex items-center justify-between mb-4 cursor-pointer"
+              onclick="toggleDropdown('list2')"
+            >
+              <h2 class="text-lg font-semibold font-poppins">UMKM</h2>
+              <i class="fas fa-chevron-down text-gray-600"></i>
+            </div>
+            <ul class="ml-4" id="list2" style="display: none">
+              <li>
+                <a
+                  href="detailpersebaranumkmadm.html"
+                  class="text-blue-500 hover:text-blue-700"
+                  >UMKM 1</a
+                >
+                <div class="flex">
+                  <a
+                    href="#"
+                    class="text-green-500 mx-1 hover:text-green-700"
+                    onclick="handleEdit(event)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-red-500 mx-1 hover:text-red-700"
+                    onclick="handleDelete(event)"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="detailpersebaranumkmadm.html"
+                  class="text-blue-500 hover:text-blue-700"
+                  >UMKM 2</a
+                >
+                <div class="flex">
+                  <a
+                    href="#"
+                    class="text-green-500 mx-1 hover:text-green-700"
+                    onclick="handleEdit(event)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-red-500 mx-1 hover:text-red-700"
+                    onclick="handleDelete(event)"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="detailpersebaranumkmadm.html"
+                  class="text-blue-500 hover:text-blue-700"
+                  >UMKM 3</a
+                >
+                <div class="flex">
+                  <a
+                    href="#"
+                    class="text-green-500 mx-1 hover:text-green-700"
+                    onclick="handleEdit(event)"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </a>
+                  <a
+                    href="#"
+                    class="text-red-500 mx-1 hover:text-red-700"
+                    onclick="handleDelete(event)"
+                  >
+                    <i class="fas fa-trash-alt"></i>
+                  </a>
+                </div>
+              </li>
+              <li class="flex justify-end">
+                <a href="#" class="text-green-500 mx-1 hover:text-green-700">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="../jsadmin.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../../map.js"></script>
+    <script>
+      function toggleDropdown(id) {
+        const list = document.getElementById(id);
+        list.style.display = list.style.display === "none" ? "block" : "none";
+      }
+    </script>
+  </body>
+</html>

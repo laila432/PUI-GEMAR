@@ -1,0 +1,68 @@
+/* Sidebar */
+.sidebar-hidden {
+  transform: translateX(-100%);
+  width: 0;
+}
+
+#sidebar {
+  transition: width 0.5s ease;
+  z-index: 5;
+}
+
+#header {
+  transition: margin-left 0.5s ease;
+  position: relative;
+  padding-right: 60px; /* Menambahkan padding agar ikon menu tidak terlalu dekat dengan sidebar */
+}
+
+#profileIcon {
+  position: absolute;
+  right: 4%; /* Mengatur posisi ikon profil agar tetap di sisi kanan */
+  top: 50%; /* Mengatur posisi vertikal ke tengah */
+  transform: translateY(-50%);
+  z-index: 10;
+  transition: right 0.5s ease;
+}
+
+body.sidebar-open #profileIcon {
+  right: calc(4% + 1 / 6 * 100vw); /* Menyesuaikan nilai right untuk responsifitas mobile */
+}
+
+#content {
+  transition: margin-left 0.5s;
+  margin-left: 1/6 * 100%;
+  width: calc(100% - (1/6 * 100%));
+}
+
+body.sidebar-open {
+  overflow-x: hidden;
+}
+
+/* Penyesuaian untuk tampilan mobile */
+@media (max-width: 768px) {
+  /* Menyembunyikan sidebar saat layar mobile */
+  .sidebar-hidden {
+    width: 0;
+  }
+
+  /* Mengatur lebar sidebar agar responsif di mobile */
+  #sidebar {
+    width: 70%;
+  }
+
+  /* Mengatur lebar submenu agar responsif di mobile */
+  #profilSubMenu ul {
+    width: 100%;
+  }
+
+  /* Konten tetap terlihat di mobile */
+  #content {
+    margin-left: 30%; /* Sesuaikan margin sesuai dengan lebar sidebar */
+    width: 70%; /* Sesuaikan lebar sesuai dengan lebar konten */
+  }
+
+  /* Mengurangi lebar navbar agar tidak menutup sidebar */
+  #header {
+    width: 100%; /* Mengurangi lebar navbar agar tidak menutup sidebar */
+  }
+}
