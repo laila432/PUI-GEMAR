@@ -140,5 +140,156 @@ function handleImageUpload(event) {
   reader.readAsDataURL(file);
 }
 
+// Menambahkan tombol ukuran heading
+
+document.getElementById('headingSize').addEventListener('change', function() {
+  var selection = window.getSelection();
+  if (selection.rangeCount > 0) {
+    var range = selection.getRangeAt(0);
+    var container = range.commonAncestorContainer;
+
+    // Check if the selection is within an editable area
+    while (container && container.nodeType === Node.ELEMENT_NODE && !container.isContentEditable) {
+      container = container.parentNode;
+    }
+
+    if (container && container.isContentEditable) {
+      var headingTag = this.value;
+      if (headingTag !== '') {
+        var heading = document.createElement(headingTag);
+        heading.textContent = 'Judul ' + headingTag.toUpperCase(); // Contoh teks untuk heading
+        heading.style.fontWeight = 'bold'; // Membuat teks cetak tebal
+        switch (headingTag) {
+          case 'h1':
+            heading.style.fontSize = '2em';
+            break;
+          case 'h2':
+            heading.style.fontSize = '1.5em';
+            break;
+          case 'h3':
+            heading.style.fontSize = '1.2em';
+            break;
+          case 'h4':
+            heading.style.fontSize = '1em';
+            break;
+        }
+        range.deleteContents(); // Remove the current selection content
+        range.insertNode(heading);
+      } else {
+        // Jika dipilih "None", hilangkan efek heading
+        document.execCommand('formatBlock', false, 'div');
+      }
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const contentEditable = document.getElementById('contentEditable');
+  const listBtn = document.getElementById('listBtn');
+  let listActive = false;
+
+  listBtn.addEventListener('click', function() {
+    listActive = !listActive;
+    toggleList();
+    updateButtonStyle();
+  });
+
+  contentEditable.addEventListener('keydown', function(event) {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const selectedNode = selection.focusNode;
+
+    // Jika tombol Enter ditekan saat list aktif
+    if (event.key === 'Enter' && listActive) {
+      event.preventDefault();
+      const listElement = document.createElement('ul');
+      const listItem = document.createElement('li');
+      listItem.textContent = '\u2022 '; // Tanda dot unicode
+      listElement.appendChild(listItem);
+      range.insertNode(listElement);
+      placeCaretAtEnd(listItem);
+    } else if (event.key === 'Enter' && selectedNode && selectedNode.nodeName === 'LI') {
+      // Jika tombol Enter ditekan di dalam elemen <li>, membuat elemen <li> baru setelahnya
+      event.preventDefault();
+      const newListItem = document.createElement('li');
+      range.setStartAfter(selectedNode);
+      range.insertNode(newListItem);
+      placeCaretAtEnd(newListItem);
+    }
+  });
+
+  function toggleList() {
+    const selection = window.getSelection();
+    const range = selection.getRangeAt(0);
+    const selectedNode = selection.focusNode;
+
+    // Jika list aktif, tambahkan elemen list dengan dot
+    if (listActive) {
+      const listElement = document.createElement('ul');
+      const listItem = document.createElement('li');
+      listItem.textContent = '\u2022 '; // Tanda dot unicode
+      listElement.appendChild(listItem);
+
+      // Masukkan elemen list ke dalam range saat ini
+      range.deleteContents();
+      range.insertNode(listElement);
+      placeCaretAtEnd(listItem);
+    } else {
+      // Jika list tidak aktif, hapus elemen list yang ada jika fokus pada elemen list
+      if (selectedNode && selectedNode.nodeName === 'LI') {
+        const parentNode = selectedNode.parentNode;
+        parentNode.removeChild(selectedNode);
+        placeCaretAtEnd(parentNode); // Pindahkan kursor ke akhir parent node
+      }
+    }
+  }
+
+  function updateButtonStyle() {
+    if (listActive) {
+      listBtn.classList.add('bg-gray-700', 'text-white');
+    } else {
+      listBtn.classList.remove('bg-gray-700', 'text-white');
+    }
+  }
+
+  function placeCaretAtEnd(el) {
+    el.focus();
+    if (typeof window.getSelection != 'undefined' &&
+        typeof document.createRange != 'undefined') {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      range.collapse(false);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } else if (typeof document.body.createTextRange != 'undefined') {
+      var textRange = document.body.createTextRange();
+      textRange.moveToElementText(el);
+      textRange.collapse(false);
+      textRange.select();
+    }
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const addProductButton = document.getElementById("addProductButton");
+  const productsContainer = document.getElementById("productsContainer");
+  const productFormTemplate = document.querySelector(
+    ".product-form-template .product-item"
+  );
+
+  addProductButton.addEventListener("click", function () {
+    const newProductForm = productFormTemplate.cloneNode(true);
+    newProductForm.classList.remove("hidden");
+    productsContainer.appendChild(newProductForm);
+
+    // Add event listener for remove button
+    newProductForm
+      .querySelector(".remove-product")
+      .addEventListener("click", function () {
+        newProductForm.remove();
+      });
+  });
+});
 
 
