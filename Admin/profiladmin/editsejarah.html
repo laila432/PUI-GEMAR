@@ -30,7 +30,7 @@
         </div>
         <nav class="mt-5 ml-2">
           <a
-            href="#"
+            href="../homeadmin.html"
             class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
             >Dashboard</a
           >
@@ -44,22 +44,22 @@
             </a>
             <div id="profilSubMenu" class="ml-4 hidden">
               <a
-                href="profiladmin/sejarahadmin.html"
+                href="sejarahadmin.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Sejarah</a
               >
               <a
-                href="profiladmin/visimisiadm.html"
+                href="visimisiadm.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Visi Misi</a
               >
               <a
-                href="profiladmin/strukturoradmin.html"
+                href="strukturoradmin.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Struktur Organisasi</a
               >
               <a
-                href="profiladmin/timadm.html"
+                href="timadm.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Tim</a
               >
@@ -67,7 +67,7 @@
           </div>
           <div class="relative">
             <a
-              href="sdadmin/artikeladm.html"
+              href="#"
               id="sumberdayaSubMenuToggle"
               class="block px-4 py-2 text-sm text-white hover:bg-gray-600 flex items-center"
             >
@@ -75,7 +75,7 @@
             </a>
             <div id="sumberdayaSubMenu" class="ml-4 hidden">
               <a
-                href="sdadmin/kegiatan.html"
+                href="../sdadmin/artikeladm.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Artikel</a
               >
@@ -85,7 +85,7 @@
                 >Kegiatan</a
               >
               <a
-                href="editkontak.html"
+                href="../sdadmin/persebaranumkm.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Persebaran UMKM</a
               >
@@ -101,7 +101,7 @@
             </a>
             <div id="kontakSubMenu" class="ml-4 hidden">
               <a
-                href="editkontak.html"
+                href="../editkontak.html"
                 class="block px-4 py-2 text-sm text-white hover:bg-gray-600"
                 >Edit Kontak</a
               >
@@ -189,6 +189,7 @@
                     id="title"
                     name="title"
                     placeholder="Masukkan judul konten"
+                    value="Judul Sebelumnya"
                     required
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   />
@@ -209,6 +210,16 @@
                   <p class="text-gray-600 text-sm mt-1">
                     *Gambar utama tidak wajib diunggah.
                   </p>
+                  <!-- Display previous image download link -->
+                  <div class="mt-2">
+                    <a
+                      id="previousImageLink"
+                      href="path/to/previous/image.jpg"
+                      download
+                      class="text-blue-500 hover:underline text-sm"
+                      >Unduh dan lihat gambar sebelumnya</a
+                    >
+                  </div>
                 </div>
                 <div class="mb-4">
                   <label
@@ -219,6 +230,9 @@
                   <!-- Toolbar for Editor -->
 
                   <div class="editor-toolbar mb-2 flex space-x-2">
+                    <!-- Heading Size -->
+                    <!-- Heading Size -->
+
                     <button
                       type="button"
                       id="boldBtn"
@@ -252,6 +266,27 @@
                         onchange="handleImageUpload(event)"
                       />
                     </button>
+                    <select
+                      id="headingSize"
+                      class="border rounded bg-white hover:bg-gray-200"
+                      title="Ukuran Heading"
+                    >
+                      <option value="">-</option>
+                      <option value="h1" class="font-bold">H1</option>
+                      <option value="h2" class="font-bold">H2</option>
+                      <option value="h3" class="font-bold">H3</option>
+                      <option value="h4" class="font-bold">H4</option>
+                    </select>
+
+                    <button
+                      type="button"
+                      id="listBtn"
+                      class="p-2 border rounded bg-white hover:bg-gray-200"
+                      title="Tambahkan List"
+                      onclick="toggleList()"
+                    >
+                      List
+                    </button>
                   </div>
                   <!-- Content Area -->
                   <div
@@ -259,7 +294,10 @@
                     contenteditable="true"
                     class="border border-gray-300 rounded p-4 text-gray-700 leading-normal focus:outline-none focus:shadow-outline"
                     style="min-height: 200px"
-                  ></div>
+                  >
+                    <!-- Pre-populated content -->
+                    Konten sejarah sebelumnya
+                  </div>
                 </div>
                 <div class="flex justify-end">
                   <button
