@@ -82,7 +82,6 @@ menuItems.forEach(item => {
     });
 });
 
-
 // dokumentasi
 document.addEventListener("DOMContentLoaded", function() {
     const slides = document.querySelectorAll(".slide");
@@ -120,39 +119,281 @@ document.addEventListener("DOMContentLoaded", function() {
     showSlide(0); // Tampilkan slide pertama saat halaman dimuat
   });
   
+  //komen
+  document.addEventListener("DOMContentLoaded", function () {
+    const commentButtons = document.querySelectorAll(".commentBtn");
+    const commentModal = document.getElementById("commentModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const addCommentBtn = document.getElementById("addCommentBtn");
+    const commentSection = document.getElementById("commentSection");
+    let currentArticleId = null;
   
+    const comments = {
+      1: [],
+      2: [],
+      3: []
+    };
   
-// Inisialisasi peta dengan koordinat tengah dan zoom level
-var map = L.map('map').setView([-2.0538389230438985, 102.27511784386269], 13);
-
-// Tambahkan peta OpenStreetMap
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Koordinat lokasi sumber daya (contoh)
-var resourceLocations = [
-    { name: "Sumber Daya 1", location: [-2.158824686124802, 102.22430608064482] }, // Contoh lokasi 1
-    { name: "Sumber Daya 2", location: [-2.1430429670623576, 102.13160894504466] }  // Contoh lokasi 2
-];
-
-// Tambahkan marker untuk setiap lokasi sumber daya
-resourceLocations.forEach(function(resource) {
-    L.marker(resource.location).addTo(map)
-        .bindPopup(`<b>${resource.name}</b><br>Lokasi Sumber Daya`);
-});
-
-
-// tailwind.config.js
-
-module.exports = {
-    theme: {
-      extend: {
-        fontFamily: {
-          roboto: ['Roboto', 'sans-serif'],
-        },
-      },
-    },
-  };
+    commentButtons.forEach(button => {
+      button.addEventListener("click", function () {
+        currentArticleId = this.getAttribute("data-article-id");
+        displayComments(currentArticleId);
+        commentModal.classList.remove("hidden");
   
+        // Scroll modal ke atas sampai komentar pertama terlihat
+        commentModal.scrollTop = 0;
+      });
+    });
+  
+    closeModalBtn.addEventListener("click", function () {
+      commentModal.classList.add("hidden");
+    });
+  
+    addCommentBtn.addEventListener("click", function () {
+      const nama = document.getElementById("nama").value;
+      const newComment = document.getElementById("newComment").value;
+  
+      if (nama && newComment) {
+        comments[currentArticleId].push({
+          id: generateId(),
+          nama: nama,
+          comment: newComment,
+          replies: []
+        });
+        displayComments(currentArticleId);
+        document.getElementById("nama").value = "";
+        document.getElementById("newComment").value = "";
+      }
+    });
+  
+    function displayComments(articleId) {
+        commentSection.innerHTML = "";
+        comments[articleId].forEach(comment => {
+          const commentHTML = createCommentHTML(comment);
+          commentSection.innerHTML += commentHTML;
+        });
+      
+        // Update jumlah komentar di tombol komentar
+        const commentCountSpan = document.querySelector(
+          `.commentCount[data-article-id="${articleId}"]`
+        );
+        if (commentCountSpan) {
+          const totalComments = countTotalComments(comments[articleId]);
+          commentCountSpan.textContent = totalComments;
+        }
+      
+        addReplyEventListeners();
+      
+        // Scroll modal ke atas sampai komentar pertama terlihat
+        document.getElementById('commentModal').scrollTop = 0
+      }
+    function createCommentHTML(comment) {
+      return `
+        <div class="p-2 border-b border-gray-300" data-comment-id="${comment.id}">
+          <strong>${comment.nama}:</strong>
+          <p>${comment.comment}</p>
+          <button class="replyBtn text-blue-400 hover:underline" data-comment-id="${comment.id}">Balas</button>
+          <div class="replies ml-4 mt-2">
+            ${renderReplies(comment.replies)}
+          </div>
+          <div class="replyForm hidden mt-2">
+            <label class="block text-sm font-medium text-gray-700">Nama:</label>
+            <input type="nama" class="replyNama w-full p-2 border border-gray-300 rounded mb-2">
+            <label class="block text-sm font-medium text-gray-700">Balasan:</label>
+            <textarea class="replyText w-full p-2 border border-gray-300 rounded mb-2"></textarea>
+            <button class="submitReplyBtn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-400">Tambah Balasan</button>
+          </div>
+        </div>
+      `;
+    }
+  
+    function renderReplies(replies) {
+      return replies.map(reply => createCommentHTML(reply)).join("");
+    }
+  
+    function addReplyEventListeners() {
+      const replyButtons = document.querySelectorAll(".replyBtn");
+      replyButtons.forEach(button => {
+        button.addEventListener("click", function () {
+          const parentCommentId = this.getAttribute("data-comment-id");
+          const parentComment = document.querySelector(`[data-comment-id="${parentCommentId}"]`);
+          const replyForm = parentComment.querySelector(".replyForm");
+          replyForm.classList.toggle("hidden");
+  
+          const submitReplyBtn = replyForm.querySelector(".submitReplyBtn");
+          submitReplyBtn.addEventListener("click", function () {
+            const replyNama = replyForm.querySelector(".replyNama").value;
+            const replyText = replyForm.querySelector(".replyText").value;
+  
+            if (replyNama && replyText) {
+              addReply(parentCommentId, replyNama, replyText);
+              displayComments(currentArticleId);
+            }
+          });
+        });
+      });
+    }
+  
+    function addReply(parentCommentId, nama, replyText) {
+      const articleComments = comments[currentArticleId];
+      const comment = findCommentById(articleComments, parentCommentId);
+      if (comment) {
+        comment.replies.push({
+          id: generateId(),
+          nama: nama,
+          comment: replyText,
+          replies: []
+        });
+      }
+    }
+  
+    function findCommentById(comments, id) {
+      for (let comment of comments) {
+        if (comment.id === id) {
+          return comment;
+        }
+        const reply = findCommentById(comment.replies, id);
+        if (reply) {
+          return reply;
+        }
+      }
+      return null;
+    }
+  
+    function generateId() {
+      return Math.random().toString(36).substr(2, 9);
+    }
+  
+    function countTotalComments(comments) {
+      let total = comments.length;
+      comments.forEach(comment => {
+        total += countTotalComments(comment.replies);
+      });
+      return total;
+    }
     
+  });
+  //komen detailartikel
+  document.addEventListener("DOMContentLoaded", function () {
+    const addCommentBtn = document.getElementById("addCommentBtn");
+    const commentSection = document.getElementById("commentSection");
+    let comments = [];
+  
+    addCommentBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+  
+      const namaInput = document.getElementById("nama").value.trim();
+      const commentInput = document.getElementById("newComment").value.trim();
+  
+      if (namaInput === "" || commentInput === "") {
+        alert("Nama dan komentar harus diisi.");
+        return;
+      }
+  
+      const newComment = {
+        id: generateId(),
+        nama: namaInput,
+        comment: commentInput,
+        replies: []
+      };
+  
+      comments.push(newComment);
+      displayComments();
+      document.getElementById("nama").value = "";
+      document.getElementById("newComment").value = "";
+    });
+  
+    function displayComments() {
+      commentSection.innerHTML = "";
+      comments.forEach(comment => {
+        const commentHTML = createCommentHTML(comment);
+        commentSection.appendChild(commentHTML);
+      });
+    }
+  
+    function createCommentHTML(comment) {
+      const commentElement = document.createElement("div");
+      commentElement.classList.add("bg-gray-200", "rounded-lg", "p-3", "mb-2");
+  
+      const namaParagraph = document.createElement("p");
+      namaParagraph.classList.add("text-sm", "font-medium", "text-gray-700");
+      namaParagraph.textContent = comment.nama;
+      commentElement.appendChild(namaParagraph);
+  
+      const commentParagraph = document.createElement("p");
+      commentParagraph.classList.add("text-sm", "text-gray-800");
+      commentParagraph.textContent = comment.comment;
+      commentElement.appendChild(commentParagraph);
+  
+      const replyBtn = document.createElement("button");
+      replyBtn.classList.add("replyBtn", "text-sm", "text-indigo-600", "hover:underline");
+      replyBtn.textContent = "Balas";
+      commentElement.appendChild(replyBtn);
+  
+      const replyForm = document.createElement("div");
+      replyForm.classList.add("replyForm", "hidden", "mt-2");
+  
+      const nameLabel = document.createElement("label");
+      nameLabel.classList.add("block", "text-sm", "font-medium", "text-gray-700");
+      nameLabel.textContent = "Nama:";
+      replyForm.appendChild(nameLabel);
+  
+      const replyNameInput = document.createElement("input");
+      replyNameInput.classList.add("replyNama", "w-full", "p-2", "border", "border-gray-300", "rounded", "mb-2");
+      replyNameInput.setAttribute("type", "text");
+      replyForm.appendChild(replyNameInput);
+  
+      const commentLabel = document.createElement("label");
+      commentLabel.classList.add("block", "text-sm", "font-medium", "text-gray-700");
+      commentLabel.textContent = "Balasan:";
+      replyForm.appendChild(commentLabel);
+  
+      const replyTextInput = document.createElement("textarea");
+      replyTextInput.classList.add("replyText", "w-full", "p-2", "border", "border-gray-300", "rounded", "mb-2");
+      replyForm.appendChild(replyTextInput);
+  
+      const submitReplyBtn = document.createElement("button");
+      submitReplyBtn.classList.add("bg-indigo-800", "text-white", "px-4", "py-2", "rounded", "hover:bg-indigo-500", "reply-submit-btn");
+      submitReplyBtn.textContent = "Kirim Balasan";
+      replyForm.appendChild(submitReplyBtn);
+  
+      commentElement.appendChild(replyForm);
+  
+      const repliesContainer = document.createElement("div");
+      repliesContainer.classList.add("replies-container");
+      comment.replies.forEach(reply => {
+        const replyHTML = createCommentHTML(reply);
+        repliesContainer.appendChild(replyHTML);
+      });
+      commentElement.appendChild(repliesContainer);
+  
+      replyBtn.addEventListener("click", function () {
+        replyForm.classList.toggle("hidden");
+      });
+  
+      submitReplyBtn.addEventListener("click", function () {
+        const replyName = replyNameInput.value.trim();
+        const replyText = replyTextInput.value.trim();
+  
+        
+  
+        const newReply = {
+          nama: replyName,
+          comment: replyText,
+          replies: []
+        };
+  
+        comment.replies.push(newReply);
+        displayComments();
+        replyNameInput.value = "";
+        replyTextInput.value = "";
+      });
+  
+      return commentElement;
+    }
+  
+    function generateId() {
+      return Math.random().toString(36).substr(2, 9);
+    }
+  });
+  
