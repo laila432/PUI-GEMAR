@@ -16,20 +16,27 @@
     />
     <!-- Font Roboto -->
     <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Lora:wght@400;600;700&display=swap"
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
     />
-
-    <link href="https://fonts.cdnfonts.com/css/poppins" rel="stylesheet" />
-
-    <link href="https://fonts.cdnfonts.com/css/amoera" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
     <link href="style.css" rel="stylesheet" />
+
+    <style>
+      .font-poppins {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
   </head>
-  <body class="font-roboto">
+
+  <body class="font-poppins">
     <nav class="bg-indigo-900 py-4 fixed-navbar w-full top-0 z-50">
       <div class="container mx-auto flex justify-between items-center">
         <!-- Logo  -->
@@ -39,8 +46,9 @@
         <!-- Menu -->
         <div class="flex justify-center space-x-6">
           <!-- Menu 1 -->
+
           <a
-            href="#"
+            href="index.html"
             class="menu-item text-white hover:text-gray-300 font-medium border-b-2"
           >
             Beranda
@@ -56,16 +64,24 @@
             <div
               class="submenu absolute left-0 mt-2 w-48 bg-indigo-900 shadow-lg rounded-lg py-2 hidden"
             >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="profile/sejarah.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Sejarah</a
               >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="profile/visi_misi.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Visi Misi</a
               >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="profile/strukturorganisasi.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Struktur Organisasi</a
               >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="profile/team.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Tim</a
               >
             </div>
@@ -82,20 +98,26 @@
             <div
               class="submenu absolute left-0 mt-2 w-48 bg-indigo-900 shadow-lg rounded-lg py-2 hidden"
             >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="Sumber Daya/artikel.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Artikel</a
               >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="Sumber Daya/kegiatan.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Kegiatan</a
               >
-              <a href="#" class="block px-4 py-2 text-white hover:bg-gray-700"
+              <a
+                href="Sumber Daya/Peta Persebaran.html"
+                class="block px-4 py-2 text-white hover:bg-gray-700"
                 >Persebaran UMKM</a
               >
             </div>
           </div>
           <!-- Menu 4 -->
           <a
-            href="#"
+            href="#contact"
             class="menu-item text-white hover:text-gray-300 font-medium"
           >
             Kontak
@@ -142,7 +164,7 @@
           </p>
           <!-- Tautan -->
           <a
-            href="link_ke_halaman_lain"
+            href="profile/sejarah.html "
             class="text-blue-500 hover:underline ml-10 mt-2 block"
             >Sejarah PUI GEMAR</a
           >
@@ -173,7 +195,7 @@
         <div class="flex">
           <!-- Kartu 1 -->
           <a
-            href="#"
+            href="profile/detailteam.html"
             class="team-member flex-none w-50 mr-4 bg-white rounded-lg shadow-md overflow-hidden transform transition-transform hover:scale-105"
           >
             <img
@@ -182,8 +204,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center mb-2">Jenny</h3>
-              <p class="text-sm text-center">Ketua</p>
+              <h3 class="text-lg text-center mb-2">Nama</h3>
+              <p class="text-sm text-center">Bidang Keahlian</p>
             </div>
           </a>
           <!-- Kartu 2 -->
@@ -197,8 +219,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -213,8 +235,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -229,8 +251,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -245,8 +267,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -261,8 +283,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -277,8 +299,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -293,8 +315,8 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
@@ -309,14 +331,14 @@
               class="w-full h-40 object-cover object-center"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center text-gray-600">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center text-gray-600">Bidang Keahlian</p>
             </div>
           </a>
 
           <!-- Kartu Terakhir  -->
           <a
-            href="/team"
+            href="profile/team.html"
             class="team-member flex-none w-50 mr-8 bg-white rounded-lg shadow-md overflow-hidden relative group transform transition-transform hover:scale-105"
           >
             <img
@@ -325,8 +347,8 @@
               class="w-full h-40 object-cover object-center filter grayscale opacity-90"
             />
             <div class="p-4">
-              <h3 class="text-lg text-center font-semibold mb-2">Jenny</h3>
-              <p class="text-sm text-center">Ketua</p>
+              <h3 class="text-lg text-center font-semibold mb-2">Nama</h3>
+              <p class="text-sm text-center">Bidang Keahlian</p>
             </div>
             <div
               class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
@@ -343,6 +365,7 @@
         </div>
       </div>
     </div>
+    <!--konten ketiga-->
     <!--konten ketiga-->
 
     <div
@@ -369,13 +392,23 @@
             industry. Lorem Ipsum has been the industry's
           </p>
           <a
-            href="#"
+            href="Sumber Daya/detailartikel.html"
             class="block text-blue-400 font-semibold py-2 hover:text-blue-300 transition duration-300"
             >Baca Selengkapnya</a
           >
+          <div class="flex items-center mt-4 space-x-4">
+            <button
+              class="flex items-center text-gray-400 hover:text-blue-400 transition duration-300 commentBtn"
+              data-article-id="1"
+            >
+              <i class="far fa-comment mr-1"></i>
+              <span class="commentCount" data-article-id="1">0</span>
+            </button>
+          </div>
         </div>
+        <hr class="border-white my-1" />
       </div>
-      <hr class="border-white my-1" />
+
       <!-- Artikel 2 -->
       <div class="mb-8 hover:shadow-lg transition duration-300">
         <div class="p-6">
@@ -392,9 +425,19 @@
             class="block text-blue-400 font-semibold py-2 hover:text-blue-300 transition duration-300"
             >Baca Selengkapnya</a
           >
+          <div class="flex items-center mt-4 space-x-4">
+            <button
+              class="flex items-center text-gray-400 hover:text-blue-400 transition duration-300 commentBtn"
+              data-article-id="2"
+            >
+              <i class="far fa-comment mr-1"></i>
+              <span class="commentCount" data-article-id="2">0</span>
+            </button>
+          </div>
         </div>
+        <hr class="border-white my-1" />
       </div>
-      <hr class="border-white my-1" />
+
       <!-- Artikel 3 -->
       <div class="mb-8 hover:shadow-lg transition duration-300">
         <div class="p-6">
@@ -411,12 +454,22 @@
             class="block text-blue-400 font-semibold py-2 hover:text-blue-300 transition duration-300"
             >Baca Selengkapnya</a
           >
+          <div class="flex items-center mt-4 space-x-4">
+            <button
+              class="flex items-center text-gray-400 hover:text-blue-400 transition duration-300 commentBtn"
+              data-article-id="3"
+            >
+              <i class="far fa-comment mr-1"></i>
+              <span class="commentCount" data-article-id="3">0</span>
+            </button>
+          </div>
         </div>
+        <hr class="border-white my-1" />
       </div>
       <!-- Link Lihat Semua -->
       <div class="text-center">
         <a
-          href="#"
+          href="Sumber Daya/artikel.html"
           class="block text-blue-400 font-semibold mt-4 hover:text-blue-600 transition duration-300 border border-blue-200 rounded-md py-2 px-4 inline-block"
           >Lihat Semua</a
         >
@@ -533,7 +586,7 @@
       </div>
     </div>
     <!--penutup-->
-    <div class="container bg-indigo-900 h-80">
+    <footer class="container bg-indigo-900 h-80" id="contact">
       <section class="container mx-auto py-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <!-- Kontak -->
@@ -558,13 +611,61 @@
                 ><i class="fab fa-instagram"></i
               ></a>
               <a href="#" class="text-white hover:text-indigo-600"
-                ><i class="fab fa-linkedin-in"></i
+                ><i class="fab fa-youtube"></i
               ></a>
             </div>
           </div>
         </div>
       </section>
+    </footer>
+    <!-- Modal -->
+    <div
+      id="commentModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden overflow-y-auto"
+    >
+      <!-- Konten modal -->
+      <div class="bg-white rounded-lg w-3/4 md:w-1/2 p-6 relative pt-4">
+        <div
+          class="sticky top-0 bg-white z-10 flex justify-between items-center"
+        >
+          <h3 class="text-lg font-semibold ">Komentar</h3>
+          <button id="closeModalBtn" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div id="commentSection" class="mb-4">
+          <!-- Konten komentar -->
+        </div>
+        <div class="flex flex-col mb-4">
+          <label
+            for="nama"
+            class="block text-sm font-medium text-gray-700 mb-2"
+            >Nama:</label
+          >
+          <input
+            type="nama"
+            id="nama"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+          <label
+            for="newComment"
+            class="block text-sm font-medium text-gray-700 mb-2"
+            >Komentar Baru:</label
+          >
+          <textarea
+            id="newComment"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          ></textarea>
+          <button
+            id="addCommentBtn"
+            class="bg-indigo-800 text-white px-4 py-2 rounded hover:bg-indigo-500"
+          >
+            Tambah Komentar
+          </button>
+        </div>
+      </div>
     </div>
+
     <!--  link JavaScript Font Awesome -->
     <script
       src="https://kit.fontawesome.com/a076d05399.js"
@@ -574,5 +675,6 @@
 
     <!--  link JavaScript tambahan -->
     <script src="javascript.js"></script>
+    <script src="map.js"></script>
   </body>
 </html>
