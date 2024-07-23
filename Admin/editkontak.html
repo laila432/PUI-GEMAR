@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Kontak</title>
+    <title>Edit Artikel</title>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -23,7 +23,7 @@
       >
         <div class="flex items-center justify-center px-4 py-4">
           <img
-            src="../../img/logo.png"
+            src="../img/logo.png"
             alt="Logo"
             class="h-16 w-auto object-contain mt-4"
           />
@@ -113,7 +113,7 @@
       <!-- Main content -->
       <div
         id="main-content"
-        class="flex-1 flex flex-col overflow-hidden transition-transform duration-100 ease-in-out"
+        class="flex-1 flex flex-col overflow-auto transition-transform duration-100 ease-in-out"
       >
         <!-- Header -->
         <nav class="bg-indigo-900 border-b border-gray-200">
@@ -167,81 +167,259 @@
           </div>
         </nav>
         <!-- Content -->
-        <main class="flex-1 bg-gray-100 p-4 sm:p-6 overflow-y-auto">
-          <div
-            id="content"
-            class="transition-transform duration-500 ease-in-out"
-          >
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">
-              Formulir Anggota Tim
-            </h2>
-            <form action="/submit_contact_form" method="post" class="space-y-4">
-              <div>
-                <label for="alamat" class="block mb-1">Alamat:</label>
-                <input
-                  type="text"
-                  id="alamat"
-                  name="alamat"
-                  required
-                  class="w-full border border-gray-300 rounded px-3 py-2"
-                />
-              </div>
-              <div>
-                <label for="email" class="block mb-1">Email:</label>
+        <main class="flex-grow container mx-auto px-4 py-8">
+          <div class="bg-white shadow-md rounded-lg p-8">
+            <h2 class="text-2xl font-semibold mb-4">Edit Informasi Kontak</h2>
+            <form id="contactForm">
+              <div class="mb-4">
+                <label
+                  for="email"
+                  class="block text-lg font-medium text-gray-700"
+                  >Alamat Email</label
+                >
                 <input
                   type="email"
                   id="email"
                   name="email"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="example@example.com"
                   required
-                  class="w-full border border-gray-300 rounded px-3 py-2"
                 />
               </div>
 
-              <div>
-                <label for="instagram" class="block mb-1"
-                  >Instagram (opsional):</label
+              <div class="mb-4">
+                <label
+                  for="phone"
+                  class="block text-lg font-medium text-gray-700"
+                  >Nomor Telepon</label
                 >
                 <input
-                  type="text"
-                  id="instagram"
-                  name="instagram"
-                  class="w-full border border-gray-300 rounded px-3 py-2"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="123-456-7890"
+                  required
                 />
               </div>
-              <div>
-                <label for="facebook" class="block mb-1"
-                  >Facebook (opsional):</label
+
+              <div class="mb-4">
+                <label
+                  for="address"
+                  class="block text-lg font-medium text-gray-700"
+                  >Alamat</label
+                >
+                <textarea
+                  id="address"
+                  name="address"
+                  rows="4"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="Jl. Contoh No. 123, Jakarta, Indonesia"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-4">
+                <label
+                  for="whatsapp"
+                  class="block text-lg font-medium text-gray-700"
+                  >Nomor WhatsApp</label
                 >
                 <input
-                  type="text"
-                  id="facebook"
-                  name="facebook"
-                  class="w-full border border-gray-300 rounded px-3 py-2"
+                  type="tel"
+                  id="whatsapp"
+                  name="whatsapp"
+                  class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  placeholder="+621234567890"
+                  required
                 />
               </div>
-              <div>
-                <label for="youtube" class="block mb-1"
-                  >YouTube (opsional):</label
+
+              <div class="mb-4">
+                <label
+                  for="socialMediaLinks"
+                  class="block text-lg font-medium text-gray-700"
+                  >Link Media Sosial Tambahan (Opsional)</label
                 >
-                <input
-                  type="text"
-                  id="youtube"
-                  name="youtube"
-                  class="w-full border border-gray-300 rounded px-3 py-2"
-                />
+                <div id="socialMediaLinks">
+                  <!-- Additional social media inputs will be added here -->
+                </div>
+                <button
+                  type="button"
+                  id="addSocialMediaLink"
+                  class="mt-2 bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400"
+                >
+                  Tambah Link Media Sosial
+                </button>
               </div>
-              <button
-                type="submit"
-                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              >
-                Simpan
-              </button>
+
+              <div class="flex justify-end">
+                <button
+                  type="submit"
+                  class="bg-indigo-800 text-white px-4 py-2 rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                  Simpan
+                </button>
+              </div>
             </form>
           </div>
         </main>
       </div>
     </div>
 
-    <script src="../jsadmin.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuButton = document.getElementById("menu-button");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("main-content");
+
+        menuButton.addEventListener("click", () => {
+          sidebar.classList.toggle("-translate-x-full");
+          mainContent.classList.toggle("pl-64");
+        });
+
+        const profileMenuButton = document.getElementById(
+          "profile-menu-button"
+        );
+        const profileMenu = document.getElementById("profile-menu");
+
+        profileMenuButton.addEventListener("click", () => {
+          profileMenu.classList.toggle("hidden");
+        });
+
+        const profilSubMenuToggle = document.getElementById(
+          "profilSubMenuToggle"
+        );
+        const profilSubMenu = document.getElementById("profilSubMenu");
+
+        profilSubMenuToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          profilSubMenu.classList.toggle("hidden");
+        });
+
+        const sumberdayaSubMenuToggle = document.getElementById(
+          "sumberdayaSubMenuToggle"
+        );
+        const sumberdayaSubMenu = document.getElementById("sumberdayaSubMenu");
+
+        sumberdayaSubMenuToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          sumberdayaSubMenu.classList.toggle("hidden");
+        });
+
+        const kontakSubMenuToggle = document.getElementById(
+          "kontakSubMenuToggle"
+        );
+        const kontakSubMenu = document.getElementById("kontakSubMenu");
+
+        kontakSubMenuToggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          kontakSubMenu.classList.toggle("hidden");
+        });
+      });
+    </script>
+    <script>
+      // Dummy data to pre-fill the form
+      document.getElementById("email").value = "example@example.com";
+      document.getElementById("phone").value = "123-456-7890";
+      document.getElementById("address").value =
+        "Jl. Contoh No. 123, Jakarta, Indonesia";
+      document.getElementById("whatsapp").value = "+621234567890";
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the form from submitting the traditional way
+
+          // Retrieve form values
+          const email = document.getElementById("email").value;
+          const phone = document.getElementById("phone").value;
+          const address = document.getElementById("address").value;
+          const whatsapp = document.getElementById("whatsapp").value;
+
+          // Update footer with new values
+          document.getElementById("footerEmail").innerText = `Email: ${email}`;
+          document.getElementById(
+            "footerPhone"
+          ).innerText = `Telepon: ${phone}`;
+          document.getElementById(
+            "footerAddress"
+          ).innerText = `Alamat: ${address}`;
+          document.getElementById(
+            "footerWhatsApp"
+          ).innerText = `WhatsApp: ${whatsapp}`;
+
+          // Update footer social media links
+          const socialMediaLinks = document.querySelectorAll(
+            "#socialMediaLinks input"
+          );
+          const footerSocialMedia =
+            document.getElementById("footerSocialMedia");
+          const footerSocialMediaSection = document.getElementById(
+            "footerSocialMediaSection"
+          );
+          footerSocialMedia.innerHTML = ""; // Clear existing social media icons
+
+          let hasSocialMediaLinks = false;
+
+          socialMediaLinks.forEach((input) => {
+            const url = input.value.trim();
+            if (url) {
+              hasSocialMediaLinks = true; // Set flag to true if there are social media links
+              let iconClass = "";
+              let tooltipText = "";
+              if (url.includes("facebook")) {
+                iconClass = "fab fa-facebook-f";
+                tooltipText = "Facebook";
+              } else if (url.includes("twitter")) {
+                iconClass = "fab fa-twitter";
+                tooltipText = "Twitter";
+              } else if (url.includes("instagram")) {
+                iconClass = "fab fa-instagram";
+                tooltipText = "Instagram";
+              } else if (url.includes("linkedin")) {
+                iconClass = "fab fa-linkedin-in";
+                tooltipText = "LinkedIn";
+              } else if (url.includes("whatsapp")) {
+                iconClass = "fab fa-whatsapp";
+                tooltipText = "WhatsApp";
+              } else {
+                return; // Skip unknown types
+              }
+
+              // Create icon element with tooltip
+              const icon = document.createElement("a");
+              icon.href = url;
+              icon.target = "_blank";
+              icon.className = "text-white hover:text-indigo-600 mx-2";
+              icon.innerHTML = `
+                        <i class="${iconClass} w-6 h-6" aria-label="${tooltipText}"></i>
+                    `;
+              footerSocialMedia.appendChild(icon);
+            }
+          });
+
+          // Toggle visibility of social media section
+          footerSocialMediaSection.classList.toggle(
+            "hidden",
+            !hasSocialMediaLinks
+          );
+
+          alert("Informasi kontak berhasil diperbarui!");
+        });
+
+      // Add additional social media link input fields
+      document
+        .getElementById("addSocialMediaLink")
+        .addEventListener("click", function () {
+          const socialMediaLinks = document.getElementById("socialMediaLinks");
+          const newLinkDiv = document.createElement("div");
+          newLinkDiv.className = "mb-2";
+          newLinkDiv.innerHTML = `
+                <input type="url" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="https://example.com" />
+            `;
+          socialMediaLinks.appendChild(newLinkDiv);
+        });
+    </script>
   </body>
 </html>
